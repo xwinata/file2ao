@@ -1,6 +1,6 @@
 {
   "name": "file2ao",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "author": "xwinata",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/xwinata/file2ao/issues"
   },
@@ -35,5 +35,14 @@
   "files": [
     "dist",
     "package.json"
+  ],
+  "keywords": [
+    "json",
+    "yaml",
+    "csv",
+    "array",
+    "object",
+    "parse",
+    "convert"
   ]
 }
