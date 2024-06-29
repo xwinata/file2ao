@@ -1,6 +1,6 @@
 import CSVreader from './fileReaders/csv';
 import YAMLreader from './fileReaders/yaml';
-import { isArray } from 'lodash';
+import _ from 'lodash';
 
 type File2AOParameter<T> = 
     ReturnType<typeof File2AO.ParameterCSV<T>> |
@@ -15,26 +15,30 @@ class File2AO<T extends Record<string, unknown>> {
     ) {
         return {
             extension: 'csv' as 'csv',
-            filePath: filePath,
-            options: options,
+            filePath,
+            options,
         }
     }
 
     static ParameterYAML<T>(
         filePath: ConstructorParameters<typeof YAMLreader<T>>[0],
         targetElement?: ConstructorParameters<typeof YAMLreader<T>>[1]
-    ) {
+    ): {
+        extension: 'yaml';
+        filePath: string;
+        targetElement?: string;
+    } {
         return {
             extension: 'yaml' as 'yaml',
-            filePath: filePath,
-            targetElement: targetElement,
-        }
+            filePath,
+            targetElement
+        };
     }
 
     static ParameterJSON(filePath: string) {
         return {
             extension: 'json' as 'json',
-            filePath: filePath,
+            filePath,
         }
     }
 
@@ -51,7 +55,7 @@ class File2AO<T extends Record<string, unknown>> {
         this.param = param;
 
         const runSmokeTest = (arr: T[]) => {
-            if (options?.runSmokeTest && !isArray(arr))
+            if (options?.runSmokeTest && !_.isArray(arr))
                 throw new Error('Failing smoke test. reading result is not an array');
         };
 
