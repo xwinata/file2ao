@@ -1,64 +1,51 @@
-import CSVreader from 'fileReaders/csv';
-import { YAMLreader } from 'fileReaders/yaml';
-import { isArray, isEmpty } from 'lodash';
+import CSVreader from './fileReaders/csv';
+import YAMLreader from './fileReaders/yaml';
+import { isArray } from 'lodash';
 
-export class ParameterCSV<T> {
-    extension: 'csv';
+type File2AOParameter<T> = 
+    ReturnType<typeof File2AO.ParameterCSV<T>> |
+    ReturnType<typeof File2AO.ParameterYAML<T>> |
+    ReturnType<typeof File2AO.ParameterJSON>;
 
-    filePath: ConstructorParameters<typeof CSVreader<T>>[0];
+class File2AO<T extends Record<string, unknown>> {
 
-    options: ConstructorParameters<typeof CSVreader<T>>[1];
-
-    constructor(
+    static ParameterCSV<T>(
         filePath: ConstructorParameters<typeof CSVreader<T>>[0],
         options: ConstructorParameters<typeof CSVreader<T>>[1]
     ) {
-        this.extension = 'csv';
-        this.filePath = filePath;
-        this.options = options;
+        return {
+            extension: 'csv' as 'csv',
+            filePath: filePath,
+            options: options,
+        }
     }
-}
 
-export class ParameterYAML<T> {
-    extension: 'yaml';
-
-    filePath: ConstructorParameters<typeof YAMLreader>[0];
-
-    targetElement?: ConstructorParameters<typeof YAMLreader>[1];
-
-    constructor(
-        filePath: ConstructorParameters<typeof YAMLreader>[0],
-        targetElement?: ConstructorParameters<typeof YAMLreader>[1]
+    static ParameterYAML<T>(
+        filePath: ConstructorParameters<typeof YAMLreader<T>>[0],
+        targetElement?: ConstructorParameters<typeof YAMLreader<T>>[1]
     ) {
-        this.extension = 'yaml';
-        this.filePath = filePath;
-        this.targetElement = targetElement;
+        return {
+            extension: 'yaml' as 'yaml',
+            filePath: filePath,
+            targetElement: targetElement,
+        }
     }
-}
 
-export class ParameterJSON<T> {
-    extension: 'json';
-
-    filePath: string;
-
-    constructor(filePath: string) {
-        this.extension = 'json';
-        this.filePath = filePath;
+    static ParameterJSON(filePath: string) {
+        return {
+            extension: 'json' as 'json',
+            filePath: filePath,
+        }
     }
-}
 
-type File2AOparameter<T> = ParameterCSV<T> | ParameterYAML<T> | ParameterJSON<T>;
-
-export default class File2AO<T extends Record<string, unknown>> {
-
-    private param: File2AOparameter<T>;
+    private param: File2AOParameter<T>;
 
     private csvReader?: CSVreader<T>;
     private yamlReader?: YAMLreader<T>;
     private jsonReader?: T[];
 
     constructor(
-        param: File2AOparameter<T>,
+        param: File2AOParameter<T>,
         options: { runSmokeTest: boolean } = { runSmokeTest: true }
     ) {
         this.param = param;
@@ -78,8 +65,9 @@ export default class File2AO<T extends Record<string, unknown>> {
                 runSmokeTest(this.yamlReader.read());
                 break;
             case 'json':
-                this.jsonReader = require(this.param.filePath)  as T[];
+                this.jsonReader = require(this.param.filePath).data  as T[];
                 runSmokeTest(this.jsonReader);
+                break;
             default:
                 throw new Error('Invalid Parameter');
         }
@@ -98,3 +86,5 @@ export default class File2AO<T extends Record<string, unknown>> {
         }
     }
 }
+
+export default File2AO;

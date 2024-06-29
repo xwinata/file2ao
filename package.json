@@ -1,9 +1,11 @@
 {
   "name": "file2ao",
-  "version": "1.0.0",
-  "main": "index.ts",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -11,6 +13,7 @@
   },
   "author": "xwinata",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/xwinata/file2ao/issues"
   },
@@ -20,6 +23,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.6",
     "@types/node": "^20.14.9",
+    "prettier": "3.3.2",
     "typescript": "^5.5.2"
   },
   "dependencies": {
@@ -27,5 +31,9 @@
     "fs": "^0.0.1-security",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
-  }
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ]
 }

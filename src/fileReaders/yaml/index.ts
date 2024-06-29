@@ -1,7 +1,7 @@
 import yaml from 'js-yaml';
 import fs from 'fs';
 
-export class YAMLreader<T> {
+class YAMLreader<T> {
     filePath: string;
 
     targetElement?: string;
@@ -32,3 +32,5 @@ export class YAMLreader<T> {
         return read;
     }
 }
+
+export default YAMLreader;
