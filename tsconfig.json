@@ -7,10 +7,10 @@
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "outDir": "./dist",
-    "lib": ["dom", "es2015", "es2016", "es2017", "es2018", "es2019", "es2020", "es2022"],
+    "lib": ["ES6"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2020",
+    "target": "ES6",
     // Enhance strictness.
     "noImplicitReturns": true,
     "noImplicitAny": true,

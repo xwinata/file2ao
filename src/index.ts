@@ -14,7 +14,7 @@ class File2AO<T extends Record<string, unknown>> {
         options: ConstructorParameters<typeof CSVreader<T>>[1]
     ) {
         return {
-            extension: 'csv' as 'csv',
+            extension: 'csv' as const,
             filePath,
             options,
         }
@@ -29,7 +29,7 @@ class File2AO<T extends Record<string, unknown>> {
         targetElement?: string;
     } {
         return {
-            extension: 'yaml' as 'yaml',
+            extension: 'yaml' as const,
             filePath,
             targetElement
         };
@@ -37,7 +37,7 @@ class File2AO<T extends Record<string, unknown>> {
 
     static ParameterJSON(filePath: string) {
         return {
-            extension: 'json' as 'json',
+            extension: 'json' as const,
             filePath,
         }
     }
