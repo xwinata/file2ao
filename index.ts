@@ -1,3 +1,3 @@
-import _default from './dist';
+import _default from './src';
 
 export default _default;

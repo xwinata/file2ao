@@ -1,5 +1,4 @@
 {
-  "files": ["index.ts"],
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,

@@ -1,8 +1,8 @@
 {
   "name": "file2ao",
   "version": "0.0.4",
-  "main": "index.ts",
-  "types": "index.d.ts",
+  "main": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "test",
     "build": "tsc"
