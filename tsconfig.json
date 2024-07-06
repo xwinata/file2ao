@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["node", "jest"],
     "allowJs": true,
     "declaration": true,
     "declarationMap": true,
