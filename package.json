@@ -1,8 +1,7 @@
 {
-  "name": "file2ao",
-  "version": "0.0.9",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "name": "@xwinata/file2ao",
+  "version": "0.0.10",
+  "main": "index.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest"
@@ -39,7 +38,9 @@
     "lodash": "^4.17.21"
   },
   "files": [
-    "dist",
+    "README.md",
+    "fileReaders/*",
+    "index.ts",
     "package.json"
   ],
   "keywords": [
