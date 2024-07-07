@@ -19,5 +19,5 @@
     "alwaysStrict": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["index.ts", "./fileReaders", "package.json"]
+  "exclude": ["coverage", "node_modules", "dist", "tests", "jest.config.ts"]
 }
