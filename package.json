@@ -1,5 +1,5 @@
 {
-  "name": "@xwinata/file2ao",
+  "name": "file2ao",
   "version": "0.0.10",
   "main": "index.ts",
   "scripts": {
