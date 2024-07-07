@@ -49,7 +49,7 @@ describe('File2AO tests', () => {
     });
 
     test('smoke test function', () => {
-        const createFile2AO = () => (new File2AO(File2AO.ParameterJSON('nodata.json')).values());
+        const createFile2AO = () => (new File2AO(File2AO.ParameterJSON('nodata.json')));
 
         expect(createFile2AO).toThrow('Failing smoke test. reading result is not an array');
     });
