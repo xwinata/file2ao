@@ -1,7 +1,7 @@
 {
   "name": "file2ao",
-  "version": "0.0.6",
-  "main": "index.ts",
+  "version": "0.0.7",
+  "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",

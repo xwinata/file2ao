@@ -44,9 +44,7 @@ class File2AO<T extends Record<string, unknown>> {
 
     private param: File2AOParameter<T>;
 
-    private csvReader?: CSVreader<T>;
-    private yamlReader?: YAMLreader<T>;
-    private jsonReader?: T[];
+    private read: () => T[];
 
     constructor(
         param: File2AOParameter<T>,
@@ -61,16 +59,16 @@ class File2AO<T extends Record<string, unknown>> {
 
         switch (this.param.extension) {
             case 'csv':
-                this.csvReader = new CSVreader<T>(this.param.filePath, this.param.options);
-                runSmokeTest(this.csvReader.read());
+                this.read = (new CSVreader<T>(this.param.filePath, this.param.options)).read;
+                runSmokeTest(this.read());
                 break;
             case 'yaml':
-                this.yamlReader = new YAMLreader(this.param.filePath, this.param.targetElement);
-                runSmokeTest(this.yamlReader.read());
+                this.read = (new YAMLreader<T>(this.param.filePath, this.param.targetElement)).read;
+                runSmokeTest(this.read());
                 break;
             case 'json':
-                this.jsonReader = require(this.param.filePath).data  as T[];
-                runSmokeTest(this.jsonReader);
+                this.read = () => require(this.param.filePath).data  as T[];
+                runSmokeTest(this.read());
                 break;
             default:
                 throw new Error('Invalid Parameter');
@@ -78,16 +76,7 @@ class File2AO<T extends Record<string, unknown>> {
     }
 
     values(): T[] {
-        switch (this.param.extension) {
-            case 'csv':
-                return this.csvReader?.read() as T[];
-            case 'yaml':
-                return this.yamlReader?.read() as T[];
-            case 'json':
-                return this.jsonReader as T[];
-            default:
-                throw new Error('Unsupported extension');
-        }
+        return this.read();
     }
 }
 
