@@ -1,6 +1,6 @@
 {
   "name": "file2ao",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "index.ts",
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
