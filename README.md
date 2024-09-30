@@ -1,13 +1,17 @@
 # File to Array of Object
+
 Syncronously read structured rows in files and convert them into array of objects
 
 # Supported files
+
 - CSV
 - YAML
 - JSON
 
 # Usage Example
+
 ## JSON file
+
 ```
 import File2AO from 'file2ao';
 
@@ -28,7 +32,9 @@ const jsonAO = new File2AO({
 
 console.log(jsonAO.values()); // [{...}, {...}, ...]
 ```
+
 ## CSV file
+
 ```
 import File2AO from 'file2ao';
 
@@ -59,7 +65,9 @@ const csvAO = new File2AO({
 
 console.log(csvAO.values()); // [{name: Abe, age: 12}, {name: Gabe, age: 13}]
 ```
+
 ## YAML file
+
 ```
 import File2AO from 'file2ao';
 
@@ -79,7 +87,9 @@ const yamlAO = new File2AO({
 
 console.log(yamlAO.values()); // [{name: Abe, age: 12}, {name: Gabe, age: 13}]
 ```
+
 you can also target specific element in yaml
+
 ```
 const yamlAO = new File2AO({
   ...,
@@ -98,7 +108,9 @@ const yamlAO = new File2AO({
 
 console.log(yamlAO.values()); // [{name: Abe, age: 12}, {name: Gabe, age: 13}]
 ```
+
 # Installation
+
 ```
 npm i file2ao
 ```

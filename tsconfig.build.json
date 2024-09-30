@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+      "dist",
+      "node_modules",
+      "coverage",
+      "jest.*",
+      "eslint.*",
+      "babel.*",
+      "src/util/test",
+      "**/*.test.ts"
+    ]
+  }
+  
